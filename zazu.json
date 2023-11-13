@@ -1,0 +1,25 @@
+{
+  "name": "PostfixCalculator",
+  "version": "0.1.0",
+  "description": "Postfix calculate.",
+  "icon": "icon.png",
+  "blocks": {
+    "input": [
+      {
+        "id": "Service",
+        "type": "RootScript",
+        "script": "postfixCalculator.js",
+        "connections": [
+          "Copy"
+        ]
+      }
+    ],
+    "output": [
+      {
+        "id": "Copy",
+        "type": "CopyToClipboard",
+        "text": "{value}"
+      }
+    ]
+  }
+}

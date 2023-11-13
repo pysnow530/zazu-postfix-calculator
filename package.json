@@ -1,0 +1,11 @@
+{
+  "name": "zazu-postfix-calculator",
+  "version": "0.1.0",
+  "description": "A postfix calculator plugin for Zazu.",
+  "main": "postfixCalculator.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pysnow530 <pysnow530@163.com>",
+  "license": "MIT"
+}
