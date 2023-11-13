@@ -3,7 +3,7 @@ const evaluator = require('./evaluator.js')
 module.exports = (pluginContext) => {
   return {
     respondsTo: (query) => {
-      return evaluator.evalPostfix(query)
+      return true
     },
     search: (query, env = {}) => {
       return new Promise((resolve, reject) => {
@@ -12,11 +12,13 @@ module.exports = (pluginContext) => {
           resolve([
             {
               icon: 'fa-calculator',
-              title: title,
+              title: '' + title,
               subtitle: 'Select item to copy the value to the clipboard.',
-              value: value,
+              value: '' + answer,
             },
           ])
+        } else {
+          resolve([])
         }
       })
     },
