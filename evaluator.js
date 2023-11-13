@@ -44,3 +44,7 @@ const parseNumber = (item) => {
         return null;
     }
 }
+
+module.exports = {
+    evalPostfix,
+}
