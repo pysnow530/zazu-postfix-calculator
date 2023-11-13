@@ -12,7 +12,7 @@ module.exports = (pluginContext) => {
           resolve([
             {
               icon: 'fa-calculator',
-              title: '' + title,
+              title: '' + answer,
               subtitle: 'Select item to copy the value to the clipboard.',
               value: '' + answer,
             },
