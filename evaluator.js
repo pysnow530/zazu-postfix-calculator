@@ -4,10 +4,13 @@ const evalPostfix = (expr) => {
     for (var i = 0; i < segs.length; i++) {
         var number = parseNumber(segs[i]);
         var operator = parseOperator(segs[i]);
+        var range = parseRange(segs[i]);
         if (number) {
             queue.push(number);
         } else if (operator) {
             queue = [operator(queue)];
+        } else if (range) {
+            range.map(i => queue.push(i))
         } else {
             return null;
         }
@@ -40,6 +43,25 @@ const parseNumber = (item) => {
         return parseInt(item)
     } else if (item.match(/^(\d+)?\.\d+$/)) {
         return parseFloat(item)
+    } else {
+        return null;
+    }
+}
+
+const parseRange = (item) => {
+    const regex = /^(\d+)\.\.(\d+)(?:\/(\d+))?$/;
+    const matched = item.match(regex);
+
+    if (matched) {
+        const start = parseInt(matched[1], 10);
+        const stop = parseInt(matched[2], 10);
+        const step = matched[3] ? parseInt(matched[3], 10) : 1;
+
+        const result = []
+        for (var i = start; i <= stop; i += step) {
+            result.push(i)
+        }
+        return result
     } else {
         return null;
     }
