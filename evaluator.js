@@ -1,21 +1,21 @@
 const evalPostfix = (expr) => {
-    const segs = expr.split(/\s+/)
-    let queue = []
+    const segs = expr.split(/\s+/).filter(i => i)
+    let stack = []
     for (var i = 0; i < segs.length; i++) {
         var number = parseNumber(segs[i]);
         var operator = parseOperator(segs[i]);
         var range = parseRange(segs[i]);
         if (number) {
-            queue.push(number);
+            stack.push(number);
         } else if (operator) {
-            queue = [operator(queue)];
+            stack = [operator(stack)];
         } else if (range) {
-            range.map(i => queue.push(i))
+            range.map(i => stack.push(i))
         } else {
             return null;
         }
     }
-    return queue[0]
+    return stack
 }
 
 const parseOperator = (item) => {
@@ -28,7 +28,7 @@ const parseOperator = (item) => {
     } else if (item === '/') {
         return (args) => args.reduce((x, y) => x / y)
     } else if (item === '^') {
-        return (args) => args.reduce((x, y) => Math.pow(x, y), 0)
+        return (args) => args.reduce((x, y) => Math.pow(x, y))
     } else {
         return null;
     }
